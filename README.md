@@ -1,5 +1,7 @@
 # Dwelr
 
+**Pronunciation**: [dwell-er]
+
 ## Introduction
 
 Dwelr is a project aimed at simplifying the process of finding and listing rental accommodations. It provides a platform for landlords to advertise their properties and for tenants to discover available rentals, all in one place.
