@@ -1,0 +1,17 @@
+:root {
+		--lightGray: #FAF9F6;
+		--grayGreen: #B2B09B;
+		--orange: #FF8C00;
+}
+
+body {
+	background-color: var(--lightGray);
+}
+
+footer {
+	background-color: var(--grayGreen);
+}
+
+.cta-btn {
+	background-color: var(--orange);
+}

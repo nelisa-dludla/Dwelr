@@ -1,0 +1,43 @@
+package pages
+
+import "dwelr/views/layouts"
+/* style="height: calc(100vh - 64px);" */
+templ AddListingPage() {
+	@layouts.Base() {
+		<div class="flex flex-col px-8 w-full max-w-6xl">
+			<h1 class="font-bold text-center text-2xl">Add Listing Page</h1>
+			<div class="flex justify-center my-12">
+				/* Left side */
+				<div class="w-1/2 p-4">
+					<form class="flex flex-col">
+						<label class="font-bold mt-5 mb-3 text-base">Location</label>
+						<input class="p-2 border-black border-2 rounded" type="text" required/>
+						<label class="font-bold mt-5 mb-3 text-base">Title</label>
+						<input class="p-2 border-black border-2 rounded" type="text" required/>
+						<label class="font-bold mt-5 mb-3 text-base">Description</label>
+						<textarea class="p-2 border-black border-2 rounded resize-none" rows="5" cols="50" required></textarea>
+						<label class="font-bold mt-5 mb-3 text-base">Rental Fee (ZAR)</label>
+						<input class="p-2 border-black border-2 rounded" type="number" min="0.00" max="99999.99" step="100.00" required/>
+						<label for="type_of_listing" class="font-bold mt-5 mb-3 text-base">Type of Listing</label>
+						<select name="types" id="type_of_listing" class="p-2 border-black border-2 bg-white rounded">
+							<option value="">-- Select --</option>
+							<option value="">Apartment/Flat</option>
+							<option value="">House</option>
+							<option value="">Room</option>
+						</select>
+						<label class="font-bold mt-5 mb-3 text-base">Number of Bedrooms</label>
+							<input class="p-2 border-black border-2 rounded" type="number" min="0" max="99" step="1" required/>
+						<label class="font-bold mt-5 mb-3 text-base">Number of Bathrooms</label>
+							<input class="p-2 border-black border-2 rounded" type="number" min="0" max="99" step="1" required/>
+					</form>
+				</div>
+				/* Right side */
+				<div class="w-1/2 py-4 pr-4 pl-8">
+					<label class="font-bold mt-5 mb-3 text-base block">Add Photos:</label>
+					<input type="file" accept="image/*"/>
+				</div>
+			</div>
+			<button class="font-bold w-40 h-14 mx-auto mb-20 rounded" type="submit" style="background-color: #FF8C00;">Publish Listing</button>
+		</div>
+	}
+}

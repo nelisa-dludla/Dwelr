@@ -1,0 +1,28 @@
+package layouts
+
+import "dwelr/views/components"
+
+templ Base() {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8"></meta>
+			<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+			<title>Dwelr - Hassle-Free Rentals</title>
+			<link href="/views/css/output.css" rel="stylesheet"></link>
+			<link href="/views/css/styles.css" rel="stylesheet"></link>
+			<script src="https://cdn.tailwindcss.com"></script>
+			<script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
+		</head>
+		<body>
+			<header>
+				@components.GuestNavbar()
+			</header>
+			<div class="p-6 flex flex-col items-center">
+				{ children... }
+			</div>
+			// Footer component
+			@components.Footer()
+		</body>
+	</html>
+}

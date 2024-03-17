@@ -1,0 +1,28 @@
+package pages
+
+import "dwelr/views/layouts"
+
+templ ViewListingPage() {
+	@layouts.Base() {
+		<div class="flex flex-col px-8 max-w-6xl" style="height: calc(100vh - 64px);">
+			<h1 class="font-bold text-center text-2xl">View Listing</h1>
+			<figure class="bg-gray-300 my-12 rounded">
+				<img class="w-full h-full max-h-72"src="/views/images/Placeholder.svg"/>
+			</figure>
+			/* Rental Fee */
+			<p class="font-bold text-2xl">R 10 500</p>
+			/* Number of rooms and listing type */
+			<p class="my-4">1 Bedroom Apartment</p>
+			/* Location */
+			<p class="">Bluff, Durban</p>
+			/* Number of bedrooms and bathrooms */
+			<div class="flex items-center font-bold my-4">
+				<p>1 Bedroom</p>
+				<p>1 Bathroom</p>
+				<button class="w-52 h-9 p-1 rounded ml-auto" type="button" style="background-color: #FF8C00;">Contact Landlord</button>
+			</div>
+			/* Description */
+			<p class="my-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta, ex in euismod iaculis, enim metus pharetra odio, at pellentesque purus nisi sed.</p>
+		</div>
+	}
+}

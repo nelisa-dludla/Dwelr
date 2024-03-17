@@ -1,0 +1,48 @@
+package components
+
+templ Footer() {
+	<footer class="h-72 w-screen px-10 pt-10 pb-5">
+		/* Top half of the footer*/
+		<div class="flex flex-row justify-between">
+			<h1 class="font-bold text-2xl">Dwelr</h1>
+			<div class="flex">
+				<ul class="mr-10">
+					<li class="font-bold">Company</li>
+					<li class>Our Story</li>
+				</ul>
+				<ul class="mr-10">
+					<li class="font-bold">Explore</li>
+					<li>Listings</li>
+				</ul>
+				<ul class="mr-10">
+					<li class="font-bold">Support</li>
+					<li>Feedback</li>
+					<li>Resources</li>
+				</ul>
+			</div>
+		</div>
+		/* Bottom half of the footer */
+		<div class="bg-black h-0.5 w-auto mt-28 mb-5"></div>
+		<div class="flex justify-between items-end">
+			/* Left half of the bottom */
+			<div class="flex w-1/2 justify-between">
+				<ul>
+					<li>Copyright &copy 2024 Dwelr</li>
+				</ul>
+				<ul class="flex">
+					<li>Terms</li>
+					<li class="ml-8">Privacy</li>
+				</ul>
+			</div>
+			/* Right half of the bottom */
+			<div class="flex w-1/2 justify-end">
+				<ul class="flex">
+					<li class="mr-10">X</li>
+					<li class="mr-10">Facebook</li>
+					<li class="mr-10">LinkedIn</li>
+					<li class="mr-10">GitHub</li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+}
