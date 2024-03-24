@@ -4,7 +4,7 @@ templ Footer() {
 	<footer class="h-72 w-screen px-10 pt-10 pb-5">
 		/* Top half of the footer*/
 		<div class="flex flex-row justify-between">
-			<h1 class="font-bold text-2xl">Dwelr</h1>
+			@Logo()
 			<div class="flex">
 				<ul class="mr-10">
 					<li class="font-bold">Company</li>
@@ -22,7 +22,7 @@ templ Footer() {
 			</div>
 		</div>
 		/* Bottom half of the footer */
-		<div class="bg-black h-0.5 w-auto mt-28 mb-5"></div>
+		<div class="bg-black h-0.5 w-auto mt-28 mb-3"></div>
 		<div class="flex justify-between items-end">
 			/* Left half of the bottom */
 			<div class="flex w-1/2 justify-between">
@@ -30,17 +30,16 @@ templ Footer() {
 					<li>Copyright &copy 2024 Dwelr</li>
 				</ul>
 				<ul class="flex">
-					<li>Terms</li>
-					<li class="ml-8">Privacy</li>
+					<li><a href="" class="cursor-not-allowed">Terms</a></li>
+					<li class="cursor-not-allowed ml-8"><a href="" class="cursor-not-allowed">Privacy</a></li>
 				</ul>
 			</div>
 			/* Right half of the bottom */
 			<div class="flex w-1/2 justify-end">
 				<ul class="flex">
-					<li class="mr-10">X</li>
-					<li class="mr-10">Facebook</li>
-					<li class="mr-10">LinkedIn</li>
-					<li class="mr-10">GitHub</li>
+					<li class="mr-10 text-2xl"><a href="https://twitter.com/Nelisa_Dludla"><i class="fa-brands fa-x-twitter" style="color: #000000;"></i></a></li>
+					<li class="mr-10 text-2xl"><a href="www.linkedin.com/in/nelisa-dludla"><i class="fa-brands fa-linkedin" style="color: #000000;"></i></a></li>
+					<li class="mr-10 text-2xl"><a href="https://github.com/nelisa-dludla/Dwelr"><i class="fa-brands fa-github" style="color: #000000;"></i></a></li>
 				</ul>
 			</div>
 		</div>

@@ -11,8 +11,9 @@ import "io"
 import "bytes"
 
 import "dwelr/views/layouts"
+import "github.com/markbates/goth"
 
-func ProfilePage() templ.Component {
+func ProfilePage(user goth.User) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -31,7 +32,35 @@ func ProfilePage() templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"w-full\" style=\"height: calc(100vh - 64px);\"><h1 class=\"font-bold text-2xl text-center mb-10\">User Profile</h1><div class=\"flex max-w-4xl mx-auto\"><div class=\"flex flex-col justify-center items-center p-5 w-1/3\"><figure class=\"h-48 w-48 rounded\"><img class=\"rounded\" src=\"/views/images/Placeholder.svg\"></figure><button class=\"rounded w-50 h-10 p-2 mt-4 font-bold text-sm\" type=\"button\" style=\"background-color: #FF8C00;\">Update Profile Picture</button></div><div class=\"p-5 w-2/3\"><p class=\"font-bold text-2xl my-8\">John Doe</p><p class=\"font-bold mt-2 mb-1\">Email</p><p>johndoe123@gmail.com</p><hr class=\"mt-2 border-2\"><p class=\"font-bold mt-2 mb-1\">Password</p><p>********</p><hr class=\"mt-2 border-2\"><p class=\"font-bold mt-2 mb-1\">Account Type</p><p>Landlord</p><hr class=\"mt-2 border-2\"><p class=\"font-bold mt-2 mb-1\">Contact Number</p><p>0123456789</p></div></div></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"w-full\" style=\"height: calc(100vh - 64px);\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			if user.Name != "" {
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1 class=\"font-bold text-2xl text-center mb-10\">")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				var templ_7745c5c3_Var3 string
+				templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(user.Name)
+				if templ_7745c5c3_Err != nil {
+					return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/profile.templ`, Line: 9, Col: 64}
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("'s Profile</h1>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			} else {
+				_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<h1 class=\"font-bold text-2xl text-center mb-10\">User Profile</h1>")
+				if templ_7745c5c3_Err != nil {
+					return templ_7745c5c3_Err
+				}
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex max-w-4xl mx-auto\"><div class=\"flex flex-col justify-center items-center p-5 w-1/3\"><figure class=\"h-48 w-48 rounded\"><img class=\"rounded\" src=\"/views/images/Placeholder.svg\"></figure><button class=\"rounded w-50 h-10 p-2 mt-4 font-bold text-sm\" type=\"button\" style=\"background-color: #FF8C00;\">Update Profile Picture</button></div><div class=\"p-5 w-2/3\"><p class=\"font-bold text-2xl my-8\">John Doe</p><p class=\"font-bold mt-2 mb-1\">Email</p><p>johndoe123@gmail.com</p><hr class=\"mt-2 border-2\"><p class=\"font-bold mt-2 mb-1\">Password</p><p>********</p><hr class=\"mt-2 border-2\"><p class=\"font-bold mt-2 mb-1\">Account Type</p><p>Landlord</p><hr class=\"mt-2 border-2\"><p class=\"font-bold mt-2 mb-1\">Contact Number</p><p>0123456789</p></div></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

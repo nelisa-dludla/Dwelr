@@ -10,7 +10,7 @@ import "context"
 import "io"
 import "bytes"
 
-func SearchBar() templ.Component {
+func Logo() templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -23,7 +23,7 @@ func SearchBar() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<form class=\"border-black border-2 rounded w-full max-w-2xl min-w-96 bg-white p-2 flex justify-between items-center\"><i class=\"fa-solid fa-magnifying-glass text-2xl ml-1\" style=\"color: #000000;\"></i> <input class=\"p-1 w-3/4 rounded \" type=\"search\" name=\"search\" hx-post=\"/search\" hx-target=\"\" placeholder=\"Search for a City or Suburb\"> <button type=\"submit\" class=\"hover:scale-110 p-2 w-24 h-11 font-bold rounded\" style=\"background-color: #FF8C00;\">Search</button></form>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex justify-evenly items-center p-2\"><img class=\"w-9 h-9 mr-2\" src=\"/views/images/logo.svg\"><h1 class=\"font-bold text-2xl\">Dwelr</h1></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

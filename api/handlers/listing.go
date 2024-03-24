@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"dwelr/db"
 	"dwelr/models"
+	"dwelr/setup"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -10,6 +10,7 @@ import (
 
 	"github.com/go-chi/chi/v5"
 )
+
 // Listing struct to be used when querying the database
 var listing models.Listing
 // Retrieves listing based on id from the database
@@ -20,7 +21,7 @@ func GetListing(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Invalid Listing ID", http.StatusBadRequest)
 	}
 
-	result := db.DB.First(&listing, id)
+	result := setup.DB.First(&listing, id)
 	if result.Error != nil {
 		http.Error(w, "Listing not found", http.StatusNotFound)
 		return
@@ -31,26 +32,34 @@ func GetListing(w http.ResponseWriter, r *http.Request) {
 }
 // Add listing to the database
 func AddListing(w http.ResponseWriter, r *http.Request) {
-	// location := r.FormValue("location")
+	/*
+	userIdStr := r.FormValue("user_id")
+	userId, _ := strconv.ParseUint(userIdStr, 10, 64)
+	fmt.Println("userId:", userId);
+	*/
 	title := r.FormValue("title")
 	description := r.FormValue("description")
+	location := r.FormValue("location")
 	rentalFeeStr := r.FormValue("rental_fee")
 	rentalFee, _ := strconv.ParseFloat(rentalFeeStr, 64)
-	dwellingTypeStr := r.FormValue("dwelling_type")
-	dwellingType, _ := strconv.Atoi(dwellingTypeStr)
-	// numOfBedroomsStr := r.FormValue("num_of_bedrooms")
-	// numOfBedrooms, _ := strconv.Atoi(numOfBedroomsStr)
-	// numOfBathroomsStr := r.FormValue("num_of_bathrooms")
-	// numOfBathrooms, _ := strconv.Atoi(numOfBathroomsStr)
+	listingType := r.FormValue("type")
+	numOfBedroomsStr := r.FormValue("number_of_bedrooms")
+	numOfBedrooms, _ := strconv.Atoi(numOfBedroomsStr)
+	numOfBathroomsStr := r.FormValue("number_of_bathrooms")
+	numOfBathrooms, _ := strconv.Atoi(numOfBathroomsStr)
 
 	listing := models.Listing {
+		//UserID: uint(userId),
 		Title: title,
 		Description: description,
+		Location: location,
 		RentalFee: rentalFee,
-		ListingTypeID: uint(dwellingType),
+		Type: listingType,
+		NumberOfBedrooms: uint(numOfBedrooms),
+		NumberOfBathrooms: uint(numOfBathrooms),
 	}
 
-	result := db.DB.Create(listing)
+	result := setup.DB.Create(listing)
 	if result.Error != nil {
 		http.Error(w, "Failed to add listing", http.StatusInternalServerError)
 		return
@@ -83,7 +92,7 @@ func UpdateListing(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	result := db.DB.First(&listing, id)
+	result := setup.DB.First(&listing, id)
 	if result.Error != nil {
 		http.Error(w, "Listing not found", http.StatusNotFound)
 		return
@@ -99,7 +108,7 @@ func UpdateListing(w http.ResponseWriter, r *http.Request) {
 		listing.RentalFee = updataData.RentalFee
 	}
 
-	saveResult := db.DB.Save(&listing)
+	saveResult := setup.DB.Save(&listing)
 	if saveResult.Error != nil {
 		http.Error(w, "Failed to update listing", http.StatusInternalServerError)
 		return
@@ -117,13 +126,13 @@ func DeleteListing(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	result := db.DB.First(&listing, id)
+	result := setup.DB.First(&listing, id)
 	if result.Error != nil {
 		http.Error(w, "Listing not found", http.StatusNotFound)
 		return
 	}
 
-	deleteResult := db.DB.Delete(&listing)
+	deleteResult := setup.DB.Delete(&listing)
 	if deleteResult.Error != nil {
 		http.Error(w, "Failed to delete listing", http.StatusInternalServerError)
 		return
@@ -135,7 +144,7 @@ func DeleteListing(w http.ResponseWriter, r *http.Request) {
 // Retrieves all listings from the database
 func GetListings(w http.ResponseWriter, r *http.Request) {
 	var listings []models.Listing
-	result := db.DB.Find(&listings)
+	result := setup.DB.Find(&listings)
 	if result.Error != nil {
 		http.Error(w, "No listings currently available", http.StatusNotFound)
 	}

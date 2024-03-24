@@ -15,23 +15,24 @@ templ LoginPage() {
 			<script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
 		</head>
 		<body class="">
-			<div class="flex h-screen">
-				/* Left side */
-				<div class="w-1/2 flex justify-center">
-					<figure class="flex justify-center items-center w-full">
-						<img class="w-full h-full" src="views/images/login.png"/>
-					</figure>
-				</div>
-				/* Right side */
-				<div class="w-1/2 flex flex-col justify-center items-center p-6">
-					<h1 class="font-bold text-3xl">Welcome Back!</h1>
-					<p>Please enter your details</p>
-					<form class="flex flex-col mt-16 mb-28">
-						<input class="border-b-black border-b-2 px-3 pt-3 p-1 w-80 h-14 placeholder-black" style="background-color: #FAF9F6;" type="email" placeholder="Email"/>
-						<input class="border-b-black border-b-2 px-3 pt-3 p-1 w-80 h-14 mt-0.5 placeholder-black" style="background-color: #FAF9F6;" type="password" placeholder="Password"/>
-						<button class="bg-black text-white rounded w-80 h-14 mt-4" type="submit">Log In</button>
-					</form>
-					<p>Don’t have an account? <a class="font-bold" href="/register">Sign Up</a></p>
+			<div class="flex h-screen justify-center items-center">
+				<div class="flex justify-center items-center max-w-4xl rounded shadow-lg">
+					/* Left side */
+					<div class="w-1/2 flex justify-center">
+						<figure class="flex justify-center items-center w-full">
+							<img class="w-full h-full rounded-l" src="views/images/login.png"/>
+						</figure>
+					</div>
+					/* Right side */
+					<div class="bg-white w-1/2 flex flex-col justify-center items-center p-6">
+						<h1 class="font-bold text-3xl mb-2">Welcome!</h1>
+						<p class="mb-16">Please enter your details</p>
+						<input class="bg-white border-b-black border-b-2 px-3 pt-3 p-1 w-80 h-14 placeholder-black" type="email" name="email" placeholder="Email"/>
+						<input class="bg-white border-b-black border-b-2 px-3 pt-3 p-1 w-80 h-14 mt-0.5 placeholder-black" type="password" name="password" placeholder="Password"/>
+						<button class="bg-black text-white font-bold rounded w-80 h-14 mt-4 " type="submit"
+								hx-post="/login"
+								hx-include="[name = 'email'], [name = 'password']">Log In</button>
+					</div>
 				</div>
 			</div>
 		@components.Footer()

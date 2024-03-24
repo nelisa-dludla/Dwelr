@@ -23,7 +23,15 @@ func UserNavbar() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav class=\"flex flex-row justify-between items-center w-screen h-16 p-6\"><h2 class=\"font-bold text-2xl\"><a href=\"/\">Dwelr</a></h2><ul class=\"font-bold flex flew-row justify-between\"><li class=\"ml-4\"><a href=\"/logout\">Logout</a></li></ul></nav>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<nav class=\"flex flex-row justify-between items-center w-screen h-16 p-6\">")
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = Logo().Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<ul class=\"mr-12 font-bold flex flew-row justify-between\"><li class=\"ml-6 hover:scale-125\"><a href=\"/logout\">Login</a></li></ul></nav>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

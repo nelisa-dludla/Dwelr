@@ -5,6 +5,6 @@ import (
 	"net/http"
 )
 
-func RenderAbout(w http.ResponseWriter, r *http.Request) {
+func About(w http.ResponseWriter, r *http.Request) {
 	pages.AboutPage().Render(r.Context(), w)
 }

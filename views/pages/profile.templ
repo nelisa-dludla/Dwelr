@@ -1,11 +1,16 @@
 package pages
 
 import "dwelr/views/layouts"
+import "github.com/markbates/goth"
 
-templ ProfilePage() {
+templ ProfilePage(user goth.User) {
 	@layouts.Base() {
 		<div class="w-full" style="height: calc(100vh - 64px);">
-			<h1 class="font-bold text-2xl text-center mb-10">User Profile</h1>
+			if user.Name != "" {
+				<h1 class="font-bold text-2xl text-center mb-10">{ user.Name }'s Profile</h1>
+			} else {
+				<h1 class="font-bold text-2xl text-center mb-10">User Profile</h1>
+			}
 			<div class="flex max-w-4xl mx-auto">
 				/* Left side of the profile */
 				<div class="flex flex-col justify-center items-center p-5 w-1/3">

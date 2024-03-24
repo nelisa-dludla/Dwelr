@@ -5,6 +5,6 @@ import (
 	"net/http"
 )
 
-func RenderRegister(w http.ResponseWriter, r *http.Request) {
+func RegisterPage(w http.ResponseWriter, r *http.Request) {
 	pages.RegisterPage().Render(r.Context(), w)
 }

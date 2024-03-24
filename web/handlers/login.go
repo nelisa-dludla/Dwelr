@@ -5,6 +5,6 @@ import (
 	"net/http"
 )
 
-func RenderLogin(w http.ResponseWriter, r *http.Request) {
+func Login(w http.ResponseWriter, r *http.Request) {
 	pages.LoginPage().Render(r.Context(), w)
 }

@@ -5,6 +5,6 @@ import (
 	"net/http"
 )
 
-func RenderViewListing(w http.ResponseWriter, r *http.Request) {
+func ViewListing(w http.ResponseWriter, r *http.Request) {
 	pages.ViewListingPage().Render(r.Context(), w)
 }
