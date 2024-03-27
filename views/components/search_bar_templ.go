@@ -23,7 +23,7 @@ func SearchBar() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<form class=\"border-black border-2 rounded w-full max-w-2xl min-w-96 bg-white p-2 flex justify-between items-center\"><i class=\"fa-solid fa-magnifying-glass text-2xl ml-1\" style=\"color: #000000;\"></i> <input class=\"p-1 w-3/4 rounded \" type=\"search\" name=\"search\" hx-post=\"/search\" hx-target=\"\" placeholder=\"Search for a City or Suburb\"> <button type=\"submit\" class=\"hover:scale-110 p-2 w-24 h-11 font-bold rounded\" style=\"background-color: #FF8C00;\">Search</button></form>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"relative max-w-3xl\"><form class=\"border-black border-2 rounded w-full  min-w-96 bg-white p-2 flex justify-between items-center\"><i class=\"fa-solid fa-magnifying-glass text-2xl ml-1\" style=\"color: #000000;\"></i> <input class=\"p-1 w-full rounded peer\" id=\"location\" type=\"search\" name=\"search\" hx-post=\"/api/search/query\" hx-target=\"#location_results\" hx-trigger=\"input changed delayed:500ms, search\" placeholder=\"Search for a City or Suburb\"> <button type=\"submit\" class=\"hover:scale-110 p-2 w-24 h-11 font-bold rounded\" style=\"background-color: #FF8C00;\" hx-post=\"/api/search\" hx-target=\"#response\" hx-include=\"[ name = &#39;search&#39;]\">Search</button></form><div class=\"absolute max-h-60 overflow-y-scroll w-full bg-white border-black border-2 rounded p-2\"><ul id=\"location_results\"></ul></div></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

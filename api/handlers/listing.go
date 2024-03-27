@@ -32,11 +32,8 @@ func GetListing(w http.ResponseWriter, r *http.Request) {
 }
 // Add listing to the database
 func AddListing(w http.ResponseWriter, r *http.Request) {
-	/*
-	userIdStr := r.FormValue("user_id")
-	userId, _ := strconv.ParseUint(userIdStr, 10, 64)
-	fmt.Println("userId:", userId);
-	*/
+	user := r.Context().Value("user")
+	userId := user.(models.User).ID
 	title := r.FormValue("title")
 	description := r.FormValue("description")
 	location := r.FormValue("location")
@@ -48,8 +45,17 @@ func AddListing(w http.ResponseWriter, r *http.Request) {
 	numOfBathroomsStr := r.FormValue("number_of_bathrooms")
 	numOfBathrooms, _ := strconv.Atoi(numOfBathroomsStr)
 
+	if userId == 0 {
+		fmt.Fprintf(w, "Please sign in/register to publish a listing.")
+		return
+	}
+	if title == "" || description == "" || location == "" || listingType == "" {
+		fmt.Fprintf(w, "Please fill out all fields.")
+		return
+	}
+
 	listing := models.Listing {
-		//UserID: uint(userId),
+		UserID: uint(userId),
 		Title: title,
 		Description: description,
 		Location: location,
@@ -59,7 +65,7 @@ func AddListing(w http.ResponseWriter, r *http.Request) {
 		NumberOfBathrooms: uint(numOfBathrooms),
 	}
 
-	result := setup.DB.Create(listing)
+	result := setup.DB.Create(&listing)
 	if result.Error != nil {
 		http.Error(w, "Failed to add listing", http.StatusInternalServerError)
 		return

@@ -17,6 +17,7 @@ func Api() chi.Router {
 	router.Delete("/listings{id}", handlers.DeleteListing)
 	// Search route
 	router.Post("/search", handlers.SearchLocation)
+	router.Post("/search/query", handlers.RetrieveCitySuburb)
 	// User routes
 	router.Get("/users/{id}", handlers.GetUser)
 	router.Get("/users/{id}/listings", handlers.GetUserListings)

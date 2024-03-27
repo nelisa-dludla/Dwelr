@@ -1,10 +1,17 @@
 package components
 
-templ UserNavbar() {
+import (
+	"dwelr/models"
+	"fmt"
+)
+
+templ UserNavbar(user models.User) {
 	<nav class="flex flex-row justify-between items-center w-screen h-16 p-6">
 		@Logo()
 		<ul class="mr-12 font-bold flex flew-row justify-between">
-			<li class="ml-6 hover:scale-125"><a href="/logout">Login</a></li>
+			<li class="ml-6 hover:scale-125"><a href="/about">Our Story</a></li>
+			<li class="ml-6 hover:scale-125"><a href={ templ.URL(fmt.Sprintf("/profile/%d", user.ID)) }>Profile</a></li>
+			<li class="ml-6 hover:scale-125"><a href="/logout">Logout</a></li>
 		</ul>
 	</nav>
 }

@@ -31,7 +31,9 @@ templ LoginPage() {
 						<input class="bg-white border-b-black border-b-2 px-3 pt-3 p-1 w-80 h-14 mt-0.5 placeholder-black" type="password" name="password" placeholder="Password"/>
 						<button class="bg-black text-white font-bold rounded w-80 h-14 mt-4 " type="submit"
 								hx-post="/login"
+								hx-target="#response"
 								hx-include="[name = 'email'], [name = 'password']">Log In</button>
+						<p id="response" class="font-lg p-1 mt-10"></p>
 					</div>
 				</div>
 			</div>

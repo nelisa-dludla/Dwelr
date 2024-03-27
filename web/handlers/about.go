@@ -6,5 +6,6 @@ import (
 )
 
 func About(w http.ResponseWriter, r *http.Request) {
-	pages.AboutPage().Render(r.Context(), w)
+	isLoggedIn, user := LoggedIn(r)
+	pages.AboutPage(isLoggedIn, user).Render(r.Context(), w)
 }

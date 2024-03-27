@@ -11,8 +11,10 @@ import "io"
 import "bytes"
 
 import "dwelr/views/layouts"
+import "dwelr/views/components"
+import "dwelr/models"
 
-func IndexPage() templ.Component {
+func IndexPage(isLoggedIn bool, user models.User) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -31,7 +33,15 @@ func IndexPage() templ.Component {
 				templ_7745c5c3_Buffer = templ.GetBuffer()
 				defer templ.ReleaseBuffer(templ_7745c5c3_Buffer)
 			}
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"py-8 px-14 flex max-w-6xl flex-col items-center\" style=\"height: calc(100vh - 64px);\"><h2 class=\"font-bold text-xl mt-20\">Welcome to Dwelr – Your Gateway to Hassle-Free Rentals!</h2><p class=\"mt-3\">Find or list your ideal rental effortlessly with our intuitive platform.</p></div>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"py-8 px-14 flex max-w-6xl flex-col items-center\" style=\"height: calc(100vh - 64px);\">")
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			templ_7745c5c3_Err = components.SearchBar().Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div id=\"response\"><h2 class=\"font-bold text-xl mt-20\">Welcome to Dwelr – Your Gateway to Hassle-Free Rentals!</h2><p class=\"mt-3\">Find or list your ideal rental effortlessly with our intuitive platform.</p></div></div>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -40,7 +50,7 @@ func IndexPage() templ.Component {
 			}
 			return templ_7745c5c3_Err
 		})
-		templ_7745c5c3_Err = layouts.Base().Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
+		templ_7745c5c3_Err = layouts.Base(isLoggedIn, user).Render(templ.WithChildren(ctx, templ_7745c5c3_Var2), templ_7745c5c3_Buffer)
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

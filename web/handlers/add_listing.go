@@ -6,5 +6,6 @@ import (
 )
 
 func AddListing(w http.ResponseWriter, r *http.Request) {
-	pages.AddListingPage().Render(r.Context(), w)
+	isLoggedIn, user := LoggedIn(r)
+	pages.AddListingPage(isLoggedIn, user).Render(r.Context(), w)
 }

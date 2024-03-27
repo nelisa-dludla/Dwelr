@@ -1,12 +1,17 @@
 package pages
 
 import "dwelr/views/layouts"
+import "dwelr/views/components"
+import "dwelr/models"
 
-templ IndexPage() {
-	@layouts.Base() {
+templ IndexPage(isLoggedIn bool, user models.User) {
+	@layouts.Base(isLoggedIn, user) {
 		<div class="py-8 px-14 flex max-w-6xl flex-col items-center" style="height: calc(100vh - 64px);">
-			<h2 class="font-bold text-xl mt-20">Welcome to Dwelr – Your Gateway to Hassle-Free Rentals!</h2>
-			<p class="mt-3">Find or list your ideal rental effortlessly with our intuitive platform.</p>
+			@components.SearchBar()
+			<div id="response">
+				<h2 class="font-bold text-xl mt-20">Welcome to Dwelr – Your Gateway to Hassle-Free Rentals!</h2>
+				<p class="mt-3">Find or list your ideal rental effortlessly with our intuitive platform.</p>
+			</div>
 		</div>
 	}
 }

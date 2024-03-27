@@ -11,8 +11,9 @@ import "io"
 import "bytes"
 
 import "dwelr/views/components"
+import "dwelr/models"
 
-func NotFound() templ.Component {
+func NotFound(isLoggedIn bool, user models.User) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
 		if !templ_7745c5c3_IsBuffer {
@@ -29,9 +30,16 @@ func NotFound() templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = components.GuestNavbar().Render(ctx, templ_7745c5c3_Buffer)
-		if templ_7745c5c3_Err != nil {
-			return templ_7745c5c3_Err
+		if isLoggedIn {
+			templ_7745c5c3_Err = components.UserNavbar(user).Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
+		} else {
+			templ_7745c5c3_Err = components.GuestNavbar().Render(ctx, templ_7745c5c3_Buffer)
+			if templ_7745c5c3_Err != nil {
+				return templ_7745c5c3_Err
+			}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex justify-center items-center max-w-6xl\" style=\"height: calc(100vh - 64px);\"><h1 class=\"font-bold text-4xl p-4\"><span class=\"text-9xl\">404</span><br><br>Oops,<br>Page Not Found...</h1><img class=\"max-w-3xl\" src=\"/views/images/error.svg\"></div>")
 		if templ_7745c5c3_Err != nil {

@@ -1,9 +1,10 @@
 package pages
 
 import "dwelr/views/layouts"
+import "dwelr/models"
 
-templ AboutPage() {
-	@layouts.Base() {
+templ AboutPage(isLoggedIn bool, user models.User) {
+	@layouts.Base(isLoggedIn, user) {
 		<div class="py-8 px-14" style="height: calc(100vh - 64px);">
 			<h1 class="text-3xl font-bold mb-4">Our Story</h1>
 			<p>Welcome to Dwelr – where finding or listing a rental property is a breeze. Our journey began with the simple idea of making the rental process more straightforward and stress-free. Discover the story behind Dwelr and how we are reshaping the way people connect with rental homes.</p>

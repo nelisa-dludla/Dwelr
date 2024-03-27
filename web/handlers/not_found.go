@@ -6,5 +6,6 @@ import (
 )
 
 func Not_Found(w http.ResponseWriter, r *http.Request) {
-	pages.NotFound().Render(r.Context(), w)
+	isLoggedIn, user := LoggedIn(r)
+	pages.NotFound(isLoggedIn, user).Render(r.Context(), w)
 }

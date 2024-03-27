@@ -21,8 +21,8 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	confirmPassword := r.FormValue("confirm_password")
 	// Check if passwords match
 	if password != confirmPassword {
-		http.Error(w, "Passwords do not match.", http.StatusBadRequest)
-		w.Write([]byte("Passwords do not match"))
+		fmt.Fprintln(w, "Passwords do not match.")
+		//http.Error(w, "Passwords do not match.", http.StatusBadRequest)
 		return
 	}
 	// Hash password
@@ -49,7 +49,7 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("User was created")
 	// Respond
 	w.WriteHeader(http.StatusCreated)
-	w.Write([]byte("User created successfully"))
+	fmt.Fprintln(w, "User created successfully")
 }
 
 func Login(w http.ResponseWriter, r *http.Request) {
@@ -61,13 +61,15 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	setup.DB.Find(&user, "email = ?", email)
 
 	if user.ID == 0 {
-		http.Error(w, "Incorrect email or password", http.StatusBadRequest)
+		fmt.Fprintf(w, "Incorrect email or password")
+		//http.Error(w, "Incorrect email or password", http.StatusBadRequest)
 		return
 	}
 	// Compare stored password with recieved password
 	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 	if err != nil {
-		http.Error(w, "Incorrect email or password", http.StatusBadRequest)
+		fmt.Fprintf(w, "Incorrect email or password")
+		//http.Error(w, "Incorrect email or password", http.StatusBadRequest)
 		return
 	}
 	// Generate a JWT token
@@ -86,7 +88,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	cookie := &http.Cookie{
 		Name: "Authorization",
 		Value: tokenStr,
-		Path: "",
+		Path: "/",
 	}
 
 	cookie.Expires = time.Now().Add(time.Hour * 24 * 30)
@@ -100,13 +102,27 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	w.Header().Add("token", tokenStr)
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, "Logged in successfully")
+	http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
+}
+
+func Logout(w http.ResponseWriter, r *http.Request) {
+
+	// Create a cookie
+	cookie := &http.Cookie{
+		Name: "Authorization",
+		Value: "",
+		Path: "/",
+	}
+
+	cookie.MaxAge = -1
+	cookie.Secure = false
+	cookie.HttpOnly = true
+
+	http.SetCookie(w, cookie)
+	http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 }
 
 func Validate(w http.ResponseWriter, r *http.Request) {
-	user := r.Context().Value("user")
-	fmt.Println(user)
-
-
 	w.WriteHeader(http.StatusOK)
 	fmt.Fprintf(w, "I'm logged in")
 }

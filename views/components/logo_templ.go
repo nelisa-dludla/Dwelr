@@ -23,7 +23,7 @@ func Logo() templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex justify-evenly items-center p-2\"><img class=\"w-9 h-9 mr-2\" src=\"/views/images/logo.svg\"><h1 class=\"font-bold text-2xl\">Dwelr</h1></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex justify-evenly items-center p-2\"><img class=\"w-9 h-9 mr-2\" src=\"/views/images/logo.svg\"> <a href=\"/\"><h1 class=\"font-bold text-2xl\">Dwelr</h1></a></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

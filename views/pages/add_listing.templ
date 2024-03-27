@@ -1,9 +1,10 @@
 package pages
 
 import "dwelr/views/layouts"
+import "dwelr/models"
 /* style="height: calc(100vh - 64px);" */
-templ AddListingPage() {
-	@layouts.Base() {
+templ AddListingPage(isLoggedIn bool, user models.User) {
+	@layouts.Base(isLoggedIn, user) {
 		<div class="flex flex-col px-8 w-full max-w-6xl">
 			<h1 class="font-bold text-center text-2xl">Add Listing Page</h1>
 			<div class="flex justify-center my-12">
@@ -13,7 +14,10 @@ templ AddListingPage() {
 						// Location
 						<label for="location" class="font-bold mt-5 mb-3 text-base">Location</label>
 						<div class="relative">
-							<input id="location" name="location" class="w-full p-2 border-black border-2 rounded peer focus:outline-none focus:ring focus:ring-orange-300" hx-post="/api/location" hx-target="#location_results" hx-trigger="input changed delayed:500ms, location" type="text" placeholder="Enter a suburb" autocomplete="off" required/>
+							<input id="location" name="location" class="w-full p-2 border-black border-2 rounded peer focus:outline-none focus:ring focus:ring-orange-300"
+									hx-post="/api/location"
+									hx-target="#location_results"
+									hx-trigger="input changed delayed:500ms, location" type="text" placeholder="Enter a suburb" autocomplete="off" required/>
 							<div class="absolute max-h-80 overflow-y-scroll top-full left-0 w-full bg-white border-black border-2 rounded opacity-0 peer-focus:opacity-100 p-2 ">
 								<ul id="location_results">
 								</ul>
@@ -51,15 +55,15 @@ templ AddListingPage() {
 					<input type="file" accept="image/*"/>
 					*/
 				</div>
+			</div>
+			<div class="flex flex-col items-center p-2 mb-2 text-lg">
+				<p class="p-2 mx-2 mt-2 mb-5" id="response"></p>
 				<button hx-post="/api/listings"
 						hx-include="[name='title'], [name='location'], [name='description'], [name='type'], [name='rental_fee'], [name='number_of_bedrooms'], [name='number_of_bathrooms']"
 						hx-target="#response"
 						class="font-bold w-40 h-14 mx-auto mb-20 rounded"
 						type="submit"
 						style="background-color: #FF8C00;">Publish Listing</button>
-			</div>
-			<div class="flex justify-center p-2 mb-2 text-lg">
-				<p id="response"></p>
 			</div>
 		</div>
 	}

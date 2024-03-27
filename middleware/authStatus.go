@@ -12,12 +12,14 @@ import (
 	"github.com/golang-jwt/jwt/v5"
 )
 
-func RequireAuth(next http.Handler) http.Handler {
+func AuthStatus(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		// Get cookie from request
 		cookie, err := r.Cookie("Authorization")
 		if err != nil {
-			w.WriteHeader(http.StatusUnauthorized)
+			fmt.Println("Failed to find cookie")
+			w.Header().Set("X-Auth-Status", "Unauthenticated")
+			next.ServeHTTP(w, r)
 			return
 		}
 		// Decode/validate it
@@ -35,7 +37,9 @@ func RequireAuth(next http.Handler) http.Handler {
 		if ok && token.Valid {
 			// Check exp
 			if float64(time.Now().Unix()) > claims["exp"].(float64) {
-				w.WriteHeader(http.StatusUnauthorized)
+				fmt.Println("Token is expired")
+				w.Header().Set("X-Auth-Status", "Unauthenticated")
+				next.ServeHTTP(w, r)
 				return
 			}
 			// Find user with token
@@ -43,15 +47,28 @@ func RequireAuth(next http.Handler) http.Handler {
 			setup.DB.Find(&user, claims["sub"])
 
 			if user.ID == 0 {
-				w.WriteHeader(http.StatusUnauthorized)
-				return
-			}
-			// Attach to request
-			r = r.WithContext(context.WithValue(r.Context(), "user", user))
+				fmt.Println("Token doesn't match any user")
+				w.Header().Set("X-Auth-Status", "Unauthenticated")
+			
+				fmt.Println("No user found #1")
 
-			next.ServeHTTP(w, r)
+				next.ServeHTTP(w, r)
+				return
+			} else {
+				fmt.Println("User found")
+				// Attach to request
+				w.Header().Set("X-Auth-Status", "Authenticated")
+				r = r.WithContext(context.WithValue(r.Context(), "user", user))
+				next.ServeHTTP(w, r)
+			}
 		} else {
-			w.WriteHeader(http.StatusUnauthorized)
+			fmt.Println("Token invalid")
+			w.Header().Set("X-Auth-Status", "Unauthenticated")
+
+			fmt.Println("No user found #2")
+
+			http.Error(w, "Unauthorized", http.StatusUnauthorized)
+			next.ServeHTTP(w, r)
 			return
 		}
 	})
