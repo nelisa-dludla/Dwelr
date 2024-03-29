@@ -1,28 +1,36 @@
 package components
 
-templ ListingCard() {
-	<div class="flex h-72 w-full mt-8 max-w-6xl rounded shadow-xl hover:cursor-pointer hover:shadow-lime-800">
-		/* Left side of the card */
-		<div class="w-2/5">
-			<figure class="bg-black flex justify-center items-center h-full w-full">
-				<img class="h-full" src="/views/images/Placeholder.svg"/>
-			</figure>
-		</div>
-		/* Right side of the card */
-		<div class="flex flex-col justify-center w-3/5 p-8">
-			/* Rental Fee */
-			<p class="font-bold text-2xl">R 10 500</p>
-			/* Number of rooms and listing type */
-			<p class="my-4">1 Bedroom Apartment</p>
-			/* Location */
-			<p class="font-bold">Bluff, Durban</p>
-			/* Description */
-			<p class="my-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi porta, ex in euismod iaculis, enim metus pharetra odio, at pellentesque purus nisi sed.</p>
-			/* Number of bedrooms and bathrooms */
-			<div class="flex font-bold my-4">
-				<p>1 Bedroom</p>
-				<p>1 Bathroom</p>
+import "dwelr/models"
+import "strconv"
+import "dwelr/helpers"
+import "fmt"
+
+templ ListingCard(listing models.Listing) {
+	//<a href="/view-listing/{{ .ID }}">
+	<a href={ templ.URL(fmt.Sprintf("/view-listing/%d", listing.ID))}>
+		<div class="flex h-72 w-full mt-8 max-w-6xl rounded shadow-xl hover:cursor-pointer hover:border-2 hover:border-orange-300">
+			/* Left side of the card */
+			<div class="w-2/5">
+				<figure class="bg-black flex justify-center items-center h-full w-full">
+					<img class="h-full" src="/views/images/Placeholder.svg"/>
+				</figure>
+			</div>
+			/* Right side of the card */
+			<div class="flex flex-col justify-center w-3/5 p-4">
+				/* Rental Fee */
+				<p class="font-bold text-2xl">R { strconv.FormatFloat(listing.RentalFee, 'f', -1, 64) }</p>
+				/* Number of rooms and listing type */
+				<p class="my-4">{ strconv.Itoa(int(listing.NumberOfBedrooms)) } Bedroom Apartment</p>
+				/* Location */
+				<p class="font-bold">{ listing.Location }</p>
+				/* Description */
+				<p class="my-4">{ helpers.ShortenDescription(listing.Description, 140) }</p>
+				/* Number of bedrooms and bathrooms */
+				<div class="flex items-center font-bold my-4">
+					<p class="text-xl">{ strconv.Itoa(int(listing.NumberOfBedrooms)) } <i class="fa-solid fa-bed text-2xl ml-1" style="color: #000000;"></i></p>
+					<p class="ml-3 text-xl">{ strconv.Itoa(int(listing.NumberOfBathrooms)) } <i class="fa-solid fa-bath text-2xl ml-1" style="color: #000000;"></i></p>
+				</div>
 			</div>
 		</div>
-	</div>
+	</a>
 }

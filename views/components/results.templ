@@ -1,0 +1,14 @@
+package components
+
+import "dwelr/models"
+
+templ Results(query string, listings []models.Listing) {
+	<div>
+		<h2 class="text-2xl mt-20"><span class="font-bold">Results for:</span> { query }</h2>
+		<div>
+			for _, listing := range listings {
+				@ListingCard(listing)
+			}
+		</div>
+	</div>
+}

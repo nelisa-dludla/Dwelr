@@ -99,9 +99,8 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 	http.SetCookie(w, cookie)
 	// Send to frontend
-	w.Header().Add("token", tokenStr)
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprintf(w, "Logged in successfully")
+	//w.Header().Add("token", tokenStr)
+	//fmt.Fprintf(w, "Logged in successfully")
 	http.Redirect(w, r, "/", http.StatusTemporaryRedirect)
 }
 

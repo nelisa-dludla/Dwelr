@@ -27,6 +27,9 @@ func New() chi.Router {
 		r.Post("/login", controllers.Login)
 		r.Get("/register", handlers.RegisterPage)
 		r.Post("/register", controllers.Register)
+		r.Post("/search", handlers.SearchLocation)
+		r.Post("/search/page/{page}", handlers.SearchLocation)
+		r.Get("/search/page/{page}", handlers.SearchLocation)
 		r.NotFound(handlers.Not_Found)
 	})
 	// that require an authentication check
@@ -36,6 +39,7 @@ func New() chi.Router {
 		r.Get("/add-listing", handlers.AddListing)
 		r.Get("/profile/{id}", handlers.RenderProfile)
 		r.Get("/logout", controllers.Logout)
+		r.NotFound(handlers.Not_Found)
 	})
 	// APIs
 	router.Mount("/api", apiRouter.Api())

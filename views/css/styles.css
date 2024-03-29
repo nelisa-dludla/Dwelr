@@ -15,3 +15,7 @@ footer {
 .cta-btn {
 	background-color: var(--orange);
 }
+
+.cta-landing-btn {
+	background-color: var(--grayGreen);
+}
