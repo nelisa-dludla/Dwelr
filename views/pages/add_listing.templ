@@ -5,36 +5,37 @@ import "dwelr/models"
 /* style="height: calc(100vh - 64px);" */
 templ AddListingPage(isLoggedIn bool, user models.User) {
 	@layouts.Base(isLoggedIn, user) {
-		<div class="flex flex-col px-8 w-full max-w-6xl">
+		<div>
+		<div class="flex flex-col px-8 w-full max-w-6xl mt-16 mx-auto">
 			<h1 class="font-bold text-center text-2xl">Add Listing Page</h1>
-			<div class="flex justify-center my-12">
+			<div class="flex mx-auto my-12">
 				/* Left side */
-				<div class="w-1/2 p-4">
+				<div class="w-full p-4">
 					<form class="flex flex-col">
 						// Location
 						<label for="location" class="font-bold mt-5 mb-3 text-base">Location</label>
 						<div class="relative">
-							<input id="location" name="location" class="w-full p-2 border-black border-2 rounded peer focus:outline-none focus:ring focus:ring-orange-300"
+							<input id="location" name="location" class="w-full p-2 rounded bg-white shadow-xl"
 									hx-post="/api/location"
 									hx-target="#location_results"
 									hx-trigger="input changed delayed:500ms, location" type="text" placeholder="Enter a suburb" autocomplete="off" required/>
-							<div class="absolute max-h-80 overflow-y-scroll top-full left-0 w-full bg-white border-black border-2 rounded opacity-0 peer-focus:opacity-100 p-2 ">
+							<div id="location_element" class="absolute max-h-80 overflow-y-scroll w-full bg-white shadow-xl rounded p-2 ">
 								<ul id="location_results">
 								</ul>
 							</div>
 						</div>
 						// Title
 						<label for="title" class="font-bold mt-5 mb-3 text-base">Title</label>
-						<input class="p-2 border-black border-2 rounded" name="title" type="text" required/>
+						<input class="bg-white shadow-xl rounded p-2" name="title" type="text" required/>
 						// Description
 						<label for="description" class="font-bold mt-5 mb-3 text-base">Description</label>
-						<textarea class="p-2 border-black border-2 rounded resize-none" name="description" rows="5" cols="50" required></textarea>
+						<textarea class="p-2 bg-white shadow-xl rounded resize-none" name="description" rows="5" cols="50" required></textarea>
 						// Rental fee
 						<label for="rental_fee" class="font-bold mt-5 mb-3 text-base">Rental Fee (ZAR)</label>
-						<input class="p-2 border-black border-2 rounded" type="number" min="0.00" name="rental_fee" max="99999.99" step="100.00" required/>
+						<input class="p-2 bg-white shadow-xl rounded" type="number" min="0.00" name="rental_fee" max="99999.99" step="100.00" required/>
 						// Type
 						<label for="type" class="font-bold mt-5 mb-3 text-base">Type of Listing</label>
-						<select name="type" id="type" class="p-2 border-black border-2 bg-white rounded" required>
+						<select name="type" id="type" class="p-2 bg-white rounded shadow-xl" required>
 							<option value="">-- Select --</option>
 							<option value="Apartment/Flat">Apartment/Flat</option>
 							<option value="House">House</option>
@@ -42,29 +43,30 @@ templ AddListingPage(isLoggedIn bool, user models.User) {
 						</select>
 						// Number of bedrooms
 						<label for="number_of_bedrooms" class="font-bold mt-5 mb-3 text-base">Number of Bedrooms</label>
-							<input class="p-2 border-black border-2 rounded" name="number_of_bedrooms" type="number" min="0" max="99" step="1" required/>
+							<input class="p-2 bg-white shadow-xl rounded" name="number_of_bedrooms" type="number" min="0" max="99" step="1" required/>
 						// Number of bathrooms
 						<label for="number_of_bathrooms" class="font-bold mt-5 mb-3 text-base">Number of Bathrooms</label>
-							<input class="p-2 border-black border-2 rounded" name="number_of_bathrooms" type="number" min="0" max="99" step="1" required/>
+							<input class="p-2 bg-white shadow-xl rounded" name="number_of_bathrooms" type="number" min="0" max="99" step="1" required/>
 					</form>
 				</div>
-				/* Right side */
-				<div class="w-1/2 py-4 pr-4 pl-8">
-					/*
-					<label class="font-bold mt-5 mb-3 text-base block">Add Photos:</label>
-					<input type="file" accept="image/*"/>
-					*/
-				</div>
 			</div>
-			<div class="flex flex-col items-center p-2 mb-2 text-lg">
+			<div class="flex flex-col mx-auto p-2 mb-2 text-lg">
 				<p class="p-2 mx-2 mt-2 mb-5" id="response"></p>
 				<button hx-post="/api/listings"
 						hx-include="[name='title'], [name='location'], [name='description'], [name='type'], [name='rental_fee'], [name='number_of_bedrooms'], [name='number_of_bathrooms']"
 						hx-target="#response"
-						class="font-bold w-40 h-14 mx-auto mb-20 rounded"
+						class="font-bold w-48 h-14 p-2 mx-auto mb-20 rounded hover:scale-x-105 shadow-xl"
 						type="submit"
 						style="background-color: #FF8C00;">Publish Listing</button>
 			</div>
 		</div>
+		</div>
 	}
 }
+				/* Right side */
+				/*
+				<div class="w-1/2 py-4 pr-4 pl-8">
+					<label class="font-bold mt-5 mb-3 text-base block">Add Photos:</label>
+					<input type="file" accept="image/*"/>
+				</div>
+				*/

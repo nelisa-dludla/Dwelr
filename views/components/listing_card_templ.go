@@ -37,7 +37,7 @@ func ListingCard(listing models.Listing) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"><div class=\"flex h-72 w-full mt-8 max-w-6xl rounded shadow-xl hover:cursor-pointer hover:border-2 hover:border-orange-300\"><div class=\"w-2/5\"><figure class=\"bg-black flex justify-center items-center h-full w-full\"><img class=\"h-full\" src=\"/views/images/Placeholder.svg\"></figure></div><div class=\"flex flex-col justify-center w-3/5 p-4\"><p class=\"font-bold text-2xl\">R ")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("\"><div class=\"bg-white flex h-72 w-full mt-8 max-w-6xl rounded shadow-xl hover:cursor-pointer hover:border-4 hover:border-orange-200\"><div class=\"w-2/5\"><figure class=\"bg-black flex justify-center items-center h-full w-full\"><img class=\"h-full object-cover\" src=\"/views/images/Placeholder.svg\"></figure></div><div class=\"flex flex-col justify-center w-3/5 p-4\"><p class=\"font-bold text-2xl\">R ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

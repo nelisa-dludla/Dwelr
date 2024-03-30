@@ -5,7 +5,7 @@ import "dwelr/models"
 
 templ Base(isLoggedIn bool, user models.User) {
 	<!DOCTYPE html>
-	<html lang="en">
+	<html lang="en" class="scroll-smooth">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -17,7 +17,7 @@ templ Base(isLoggedIn bool, user models.User) {
 			/* <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"/> */
 			<script src="https://kit.fontawesome.com/84325e05c5.js" crossorigin="anonymous"/>
 		</head>
-		<body class="flex flex-col min-h-screen pt-16">
+		<body class="bg-image flex flex-col min-h-screen pt-16" >
 			<header>
 				if isLoggedIn {
 					@components.UserNavbar(user)
@@ -25,10 +25,10 @@ templ Base(isLoggedIn bool, user models.User) {
 					@components.GuestNavbar()
 				}
 			</header>
-			<div class="px-6 pb-6 flex flex-col items-center">
-				<div class="flex-grow">
+			<div class="px-6 pb-6 flex flex-col mx-auto">
+				//<div class="flex-grow">
 					{ children... }
-				</div>
+				//</div>
 			</div>
 			// Footer component
 			@components.Footer()

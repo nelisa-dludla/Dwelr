@@ -14,9 +14,9 @@ templ LoginPage() {
 			<script src="https://cdn.tailwindcss.com"></script>
 			<script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
 		</head>
-		<body class="">
+		<body class="bg-image">
 			<div class="flex h-screen justify-center items-center">
-				<div class="flex justify-center items-center max-w-4xl rounded shadow-lg">
+				<div class="bg-white flex justify-center items-center max-w-4xl rounded shadow-lg">
 					/* Left side */
 					<div class="w-1/2 flex justify-center">
 						<figure class="flex justify-center items-center w-full">
@@ -34,6 +34,7 @@ templ LoginPage() {
 								hx-target="#response"
 								hx-include="[name = 'email'], [name = 'password']">Log In</button>
 						<p id="response" class="font-lg p-1 mt-10"></p>
+						<p class="">Don’t have an account? <a class="font-bold" href="/register">Sign Up</a></p>
 					</div>
 				</div>
 			</div>

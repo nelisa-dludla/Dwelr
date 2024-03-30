@@ -7,7 +7,7 @@ import "strconv"
 
 templ Results(isLoggedIn bool, user models.User, query string, listings []models.Listing, pageData models.Pagination) {
 	<!DOCTYPE html>
-	<html lang="en">
+	<html lang="en" class="scroll-smooth">
 		<head>
 			<meta charset="UTF-8"/>
 			<meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -19,7 +19,7 @@ templ Results(isLoggedIn bool, user models.User, query string, listings []models
 			/* <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"/> */
 			<script src="https://kit.fontawesome.com/84325e05c5.js" crossorigin="anonymous"/>
 		</head>
-		<body class="flex flex-col">
+		<body class="flex flex-col bg-image">
 			<header>
 				if isLoggedIn {
 					@components.UserNavbar(user)
@@ -27,9 +27,10 @@ templ Results(isLoggedIn bool, user models.User, query string, listings []models
 					@components.GuestNavbar()
 				}
 			</header>
-			<div class="py-8 px-14 flex max-w-6xl flex-col min-h-screen mx-auto items-center">
-			//<div class="py-8 px-14 flex max-w-6xl flex-col items-center" style="height: calc(100vh - 64px);">
-				@components.SearchBar()
+			<div class="py-8 px-14 flex max-w-6xl flex-col min-h-screen mt-20 mx-auto">
+				<div>
+					@components.SearchBar()
+				</div>
 				<div class="flex-grow">
 					<h2 class="text-2xl mt-20"><span class="font-bold">Results for:</span> { query }</h2>
 					<div class="">
@@ -38,54 +39,54 @@ templ Results(isLoggedIn bool, user models.User, query string, listings []models
 						}
 					</div>
 				</div>
-				<div class="my-14 p-2">
+				<div class="my-14 p-2 mx-auto">
 					// Previous Pages
 					if pageData.CurrentPage > 1 {
-						<a class="border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.PrevPage, query)) }>Previous</a>
+						<a class="bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.PrevPage, query)) }>Previous</a>
 					} else {
-						<span class="cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5" >Previous</span>
+						<span class="bg-white cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5" >Previous</span>
 					}
 					// First Page
 					if pageData.CurrentPage > 3 {
-						<a class="border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/1?search=%s", query)) }>{ strconv.Itoa(1) }</a>
+						<a class="bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/1?search=%s", query)) }>{ strconv.Itoa(1) }</a>
 					}
 					// ...
 					if pageData.CurrentPage > 4 {
-						<span class="cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5" >...</span>
+						<span class="bg-white cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5" >...</span>
 					}
 					// Two Below
 					if pageData.CurrentPage > 2 {
-						<a class="border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.TwoBelow, query)) }>{ strconv.Itoa(pageData.TwoBelow) }</a>
+						<a class="bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.TwoBelow, query)) }>{ strconv.Itoa(pageData.TwoBelow) }</a>
 					}
 					// One Below
 					if pageData.CurrentPage > 1 {
-						<a class="border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.PrevPage, query)) }>{ strconv.Itoa(pageData.PrevPage) }</a>
+						<a class="bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.PrevPage, query)) }>{ strconv.Itoa(pageData.PrevPage) }</a>
 					}
 					// Current Page
-					<span class="cursor-default border-2 border-gray rounded p-2 w-10 mx-0.5">{ strconv.Itoa(pageData.CurrentPage) }</span>
+					<span class="bg-white cursor-default border-2 border-gray rounded p-2 w-10 mx-0.5">{ strconv.Itoa(pageData.CurrentPage) }</span>
 					// Next Pages
 					// One After
 					if pageData.CurrentPage < pageData.TotalPages {
-						<a class="border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.NextPage, query)) }>{ strconv.Itoa(pageData.NextPage) }</a>
+						<a class="bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.NextPage, query)) }>{ strconv.Itoa(pageData.NextPage) }</a>
 					}
 					// Two After
 					if pageData.TwoAfter <= pageData.TotalPages {
-						<a class="border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.TwoAfter, query)) }>{ strconv.Itoa(pageData.TwoAfter) }</a>
+						<a class="bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.TwoAfter, query)) }>{ strconv.Itoa(pageData.TwoAfter) }</a>
 					}
 					// ...
 					if pageData.ThreeAfter < pageData.TotalPages {
-						<span class="cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5" >...</span>
+						<span class="bg-white cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5" >...</span>
 					}
 					// Last Page
 					if pageData.TwoAfter < pageData.TotalPages {
-						<a class="border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.TotalPages, query)) }>{ strconv.Itoa(pageData.TotalPages) }</a>
+						<a class="bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.TotalPages, query)) }>{ strconv.Itoa(pageData.TotalPages) }</a>
 					}
 					// Next
 
 					if pageData.CurrentPage < pageData.TotalPages {
-						<a class="border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.NextPage, query)) }>Next</a>
+						<a class="bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400" href={ templ.URL(fmt.Sprintf("/search/page/%d?search=%s", pageData.NextPage, query)) }>Next</a>
 					} else {
-						<span class="cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5" >Next</span>
+						<span class="bg-white cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5" >Next</span>
 					}
 				</div>
 			</div>

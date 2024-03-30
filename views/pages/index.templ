@@ -9,9 +9,9 @@ templ IndexPage(isLoggedIn bool, user models.User) {
 		<div class="pb-8 px-14 flex max-w-6xl flex-col items-center">
 			// Greeting
 			<section id="greeting" class="" style="height: calc(100vh - 64px);">
-				<figure class="w-screen h-96 relative flex flex-col items-center">
+				<figure class="w-screen h-96 flex flex-col">
 					<img class="object-cover w-full h-full" src="/views/images/landing.png"/>
-					<div class="absolute -bottom-10">
+					<div class="">
 						@components.SearchBar()
 					</div>
 				</figure>
@@ -19,14 +19,14 @@ templ IndexPage(isLoggedIn bool, user models.User) {
 					<h2 class="font-bold text-3xl mt-20">Welcome to Dwelr – Your Gateway to Hassle-Free Rentals!</h2>
 					<p class="mt-3 text-xl">Find or list your ideal rental effortlessly with our intuitive platform.</p>
 					<div class="mt-14">
-						<a href=""><button class="font-bold w-48 h-14 mr-28  rounded" type="button" style="background-color: var(--grayGreen);">Find Rentals Now</button></a>
-						<a href=""><button class="font-bold w-48 h-14 bg-gray-500 rounded" type="button" style="background-color: var(--grayGreen);" >List Your Property</button></a>
+						<a href=""><button class="font-bold w-48 h-14 mr-28 rounded hover:scale-x-105 shadow-xl" type="button" style="background-color: var(--grayGreen);">Find Rentals Now</button></a>
+						<a href="/add-listing"><button class="font-bold w-48 h-14 bg-gray-500 rounded hover:scale-105 shadow-xl" type="button" style="background-color: var(--grayGreen);" >List Your Property</button></a>
 					</div>
 				</div>
 			</section>
 			// Features
 			<section id="features" class="flex flex-col items-center mt-20">
-				<h2 class="font-bold text-3xl my-10">Features</h2>
+				<h2 class="font-bold text-3xl mb-10 mt-20">Features</h2>
 					// Feature 1
 					<div class="bg-white rounded shadow-xl p-8 m-6 flex justify-center items-center">
 						<figure class="w-1/2 rounded">
@@ -60,7 +60,7 @@ templ IndexPage(isLoggedIn bool, user models.User) {
 			</section>
 			// About
 			<section id="about" class="flex flex-col items-center mt-20">
-				<h2 class="font-bold text-3xl my-10" >About Dwelr</h2>
+				<h2 class="font-bold text-3xl mb-10 mt-20" >About Dwelr</h2>
 				// Image
 				<figure class="w-full h-96 rounded my-10 shadow-xl">
 					<img class="object-cover w-full h-full rounded shadow-xl"src="/views/images/about.png"/>
@@ -76,7 +76,7 @@ templ IndexPage(isLoggedIn bool, user models.User) {
 				<br/>
 				<br/>
 				</p>
-				<em class="my-2">Links to reach me, as well as the project's repository, can be found in the footer.</em>
+				<em class="my-16">Links to reach me, as well as the project's repository, can be found in the footer.</em>
 			</section>
 		</div>
 	}

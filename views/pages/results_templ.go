@@ -28,7 +28,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Dwelr - Hassle-Free Rentals</title><link href=\"/views/css/output.css\" rel=\"stylesheet\"><link href=\"/views/css/styles.css\" rel=\"stylesheet\"><script src=\"https://cdn.tailwindcss.com\"></script><script src=\"https://unpkg.com/htmx.org@1.9.11\"></script><script src=\"https://kit.fontawesome.com/84325e05c5.js\" crossorigin=\"anonymous\"></script></head><body class=\"flex flex-col\"><header>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\" class=\"scroll-smooth\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Dwelr - Hassle-Free Rentals</title><link href=\"/views/css/output.css\" rel=\"stylesheet\"><link href=\"/views/css/styles.css\" rel=\"stylesheet\"><script src=\"https://cdn.tailwindcss.com\"></script><script src=\"https://unpkg.com/htmx.org@1.9.11\"></script><script src=\"https://kit.fontawesome.com/84325e05c5.js\" crossorigin=\"anonymous\"></script></head><body class=\"flex flex-col bg-image\"><header>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -43,7 +43,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 				return templ_7745c5c3_Err
 			}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</header><div class=\"py-8 px-14 flex max-w-6xl flex-col min-h-screen mx-auto items-center\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</header><div class=\"py-8 px-14 flex max-w-6xl flex-col min-h-screen mt-20 mx-auto\"><div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -51,14 +51,14 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex-grow\"><h2 class=\"text-2xl mt-20\"><span class=\"font-bold\">Results for:</span> ")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div><div class=\"flex-grow\"><h2 class=\"text-2xl mt-20\"><span class=\"font-bold\">Results for:</span> ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(query)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 33, Col: 83}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 34, Col: 83}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -74,12 +74,12 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 				return templ_7745c5c3_Err
 			}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><div class=\"my-14 p-2\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("</div></div><div class=\"my-14 p-2 mx-auto\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		if pageData.CurrentPage > 1 {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -93,13 +93,13 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 				return templ_7745c5c3_Err
 			}
 		} else {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<span class=\"cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5\">Previous</span>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<span class=\"bg-white cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5\">Previous</span>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
 		if pageData.CurrentPage > 3 {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -115,7 +115,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			var templ_7745c5c3_Var5 string
 			templ_7745c5c3_Var5, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(1))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 49, Col: 172}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 50, Col: 181}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var5))
 			if templ_7745c5c3_Err != nil {
@@ -127,13 +127,13 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			}
 		}
 		if pageData.CurrentPage > 4 {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<span class=\"cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5\">...</span>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<span class=\"bg-white cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5\">...</span>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
 		if pageData.CurrentPage > 2 {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -149,7 +149,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			var templ_7745c5c3_Var7 string
 			templ_7745c5c3_Var7, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(pageData.TwoBelow))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 57, Col: 208}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 58, Col: 217}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var7))
 			if templ_7745c5c3_Err != nil {
@@ -161,7 +161,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			}
 		}
 		if pageData.CurrentPage > 1 {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -177,7 +177,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			var templ_7745c5c3_Var9 string
 			templ_7745c5c3_Var9, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(pageData.PrevPage))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 61, Col: 208}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 62, Col: 217}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var9))
 			if templ_7745c5c3_Err != nil {
@@ -188,14 +188,14 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 				return templ_7745c5c3_Err
 			}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<span class=\"cursor-default border-2 border-gray rounded p-2 w-10 mx-0.5\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<span class=\"bg-white cursor-default border-2 border-gray rounded p-2 w-10 mx-0.5\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var10 string
 		templ_7745c5c3_Var10, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(pageData.CurrentPage))
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 64, Col: 115}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 65, Col: 124}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var10))
 		if templ_7745c5c3_Err != nil {
@@ -206,7 +206,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			return templ_7745c5c3_Err
 		}
 		if pageData.CurrentPage < pageData.TotalPages {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -222,7 +222,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			var templ_7745c5c3_Var12 string
 			templ_7745c5c3_Var12, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(pageData.NextPage))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 68, Col: 208}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 69, Col: 217}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var12))
 			if templ_7745c5c3_Err != nil {
@@ -234,7 +234,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			}
 		}
 		if pageData.TwoAfter <= pageData.TotalPages {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -250,7 +250,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			var templ_7745c5c3_Var14 string
 			templ_7745c5c3_Var14, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(pageData.TwoAfter))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 72, Col: 208}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 73, Col: 217}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var14))
 			if templ_7745c5c3_Err != nil {
@@ -262,13 +262,13 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			}
 		}
 		if pageData.ThreeAfter < pageData.TotalPages {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<span class=\"cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5\">...</span>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<span class=\"bg-white cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5\">...</span>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
 		}
 		if pageData.TwoAfter < pageData.TotalPages {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -284,7 +284,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			var templ_7745c5c3_Var16 string
 			templ_7745c5c3_Var16, templ_7745c5c3_Err = templ.JoinStringErrs(strconv.Itoa(pageData.TotalPages))
 			if templ_7745c5c3_Err != nil {
-				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 80, Col: 212}
+				return templ.Error{Err: templ_7745c5c3_Err, FileName: `views/pages/results.templ`, Line: 81, Col: 221}
 			}
 			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var16))
 			if templ_7745c5c3_Err != nil {
@@ -296,7 +296,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 			}
 		}
 		if pageData.CurrentPage < pageData.TotalPages {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<a class=\"bg-white border-2 border-orange-400 rounded p-2 w-24 mx-0.5 hover:bg-orange-400\" href=\"")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
@@ -310,7 +310,7 @@ func Results(isLoggedIn bool, user models.User, query string, listings []models.
 				return templ_7745c5c3_Err
 			}
 		} else {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<span class=\"cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5\">Next</span>")
+			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<span class=\"bg-white cursor-default border-2 border-gray rounded p-2 w-24 mx-0.5\">Next</span>")
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}

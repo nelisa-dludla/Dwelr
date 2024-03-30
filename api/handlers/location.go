@@ -33,7 +33,7 @@ func RetrieveLocation(w http.ResponseWriter, r *http.Request) {
 	var resultStr []string
 	for _, result := range results {
 		locationStr := fmt.Sprintf("%s, %s, %s", result.SuburbName, result.CityName, result.ProvinceName)
-		item := fmt.Sprintf("<li onclick='selectInput(this)' class='p-1 w-full hover:cursor-pointer hover:bg-orange-300 location_option' data-value='%s'>%s</li>\n", locationStr, locationStr)
+		item := fmt.Sprintf("<li onclick='selectInput(this)' class='p-1 w-full hover:cursor-pointer hover:bg-orange-300 hover:rounded hover:font-semibold location_option' data-value='%s'>%s</li>\n", locationStr, locationStr)
 		resultStr = append(resultStr, item)
 	}
 	w.Header().Set("Content-Type", "text/html")
@@ -72,7 +72,7 @@ func RetrieveCitySuburb(w http.ResponseWriter, r *http.Request) {
 	}
 	var resultStr []string
 	for _, location := range locations {
-		item := fmt.Sprintf("<li onclick='selectInput(this)' class='p-1 w-full hover:cursor-pointer hover:bg-orange-300 location_option' data-value='%s'>%s</li>\n", location, location)
+		item := fmt.Sprintf("<li onclick='selectInput(this)' class='p-1 w-full hover:cursor-pointer hover:bg-orange-300 hover:rounded hover:font-semibold location_option' data-value='%s'>%s</li>\n", location, location)
 		resultStr = append(resultStr, item)
 	}
 	w.Header().Set("Content-Type", "text/html")

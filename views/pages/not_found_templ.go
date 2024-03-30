@@ -26,7 +26,7 @@ func NotFound(isLoggedIn bool, user models.User) templ.Component {
 			templ_7745c5c3_Var1 = templ.NopComponent
 		}
 		ctx = templ.ClearChildren(ctx)
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Dwelr - Page Not Found</title><link href=\"/views/css/output.css\" rel=\"stylesheet\"><link href=\"/views/css/styles.css\" rel=\"stylesheet\"><script src=\"https://cdn.tailwindcss.com\"></script><script src=\"https://kit.fontawesome.com/84325e05c5.js\" crossorigin=\"anonymous\"></script></head><body class=\"flex flex-col items-center\">")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<!doctype html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Dwelr - Page Not Found</title><link href=\"/views/css/output.css\" rel=\"stylesheet\"><link href=\"/views/css/styles.css\" rel=\"stylesheet\"><script src=\"https://cdn.tailwindcss.com\"></script><script src=\"https://kit.fontawesome.com/84325e05c5.js\" crossorigin=\"anonymous\"></script></head><body class=\"bg-image flex flex-col items-center\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -41,7 +41,7 @@ func NotFound(isLoggedIn bool, user models.User) templ.Component {
 				return templ_7745c5c3_Err
 			}
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex justify-center items-center max-w-6xl\" style=\"height: calc(100vh - 64px);\"><h1 class=\"font-bold text-4xl p-4\"><span class=\"text-9xl\">404</span><br><br>Oops,<br>Page Not Found...</h1><img class=\"max-w-3xl\" src=\"/views/images/error.svg\"></div>")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("<div class=\"flex justify-center items-center max-w-6xl mt-16\" style=\"height: calc(100vh - 64px);\"><h1 class=\"font-bold text-4xl p-4\"><span class=\"text-9xl\">404</span><br><br>Oops,<br>Page Not Found...</h1><img class=\"max-w-3xl\" src=\"/views/images/error.svg\"></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
